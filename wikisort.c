@@ -55,6 +55,26 @@ static inline size_t pow2_floor(
 	return x - (x >> 1);
 }
 
+static inline size_t min(
+		const size_t a,
+		const size_t b)
+{
+	if(a < b)
+		return a;
+	else
+		return b;
+}
+
+static inline size_t max(
+		const size_t a,
+		const size_t b)
+{
+	if(a > b)
+		return a;
+	else
+		return b;
+}
+
 /* copy an element from within the array */
 static inline void copy_aa(
 		const sort_t *sort,
@@ -135,14 +155,6 @@ static inline void blockswap_aa(
 		a += sort->itemsz;
 		b += sort->itemsz;
 	}
-#if 0
-	register size_t bytes = sort->itemsz * n;
-	for(size_t i = 0; i < bytes; i++) {
-		unsigned char tmp = *a;
-		*a++ = *b;
-		*b++ = tmp;
-	}
-#endif
 }
 
 /* this is from http://www.codecodex.com/wiki/Calculate_an_integer_square_root */
@@ -240,26 +252,6 @@ static iter_t iter_new(
 	me.numerator_step = me.size % me.denominator;
 	me.decimal_step = me.size / me.denominator;
 	return me;
-}
-
-static inline size_t min(
-		const size_t a,
-		const size_t b)
-{
-	if(a < b)
-		return a;
-	else
-		return b;
-}
-
-static inline size_t max(
-		const size_t a,
-		const size_t b)
-{
-	if(a > b)
-		return a;
-	else
-		return b;
 }
 
 /* toolbox functions used by the sorter */
